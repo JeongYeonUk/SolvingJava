@@ -1,4 +1,4 @@
-package boj;
+package boj.boj_2252;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class BOJ_2252 {
+public class Main {
     static int N;
     static int M;
     static int indegree[];
