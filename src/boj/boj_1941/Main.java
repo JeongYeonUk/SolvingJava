@@ -25,6 +25,7 @@ public class Main {
             dfs(i, 1, 0);
         }
         System.out.println(ans);
+        sc.close();
     }  
 
     private static void dfs(int pos, int cnt, int som){
