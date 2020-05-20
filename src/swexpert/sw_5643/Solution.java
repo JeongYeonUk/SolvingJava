@@ -1,4 +1,4 @@
-package swexprt.sw_5643;
+package swexpert.sw_5643;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package boj_2468;
+package boj.boj_2468;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,13 +9,13 @@ import java.util.StringTokenizer;
 
 /**
  *  logic 1
- *  - 입력을 받으면서 값의 최소와 최대를 구한다.
- *  - 2중 for문으로 탐색을 하면서 장맛비의 값보다 작고 방문을 하지 않았다면 bfs로 물에 잠기게 한다.
- *  - bfs를 돌때는 8방향으로 돈다.
+ *  - �엯�젰�쓣 諛쏆쑝硫댁꽌 媛믪쓽 理쒖냼�� 理쒕�瑜� 援ы븳�떎.
+ *  - 2以� for臾몄쑝濡� �깘�깋�쓣 �븯硫댁꽌 �옣留쏅퉬�쓽 媛믩낫�떎 �옉怨� 諛⑸Ц�쓣 �븯吏� �븡�븯�떎硫� bfs濡� 臾쇱뿉 �옞湲곌쾶 �븳�떎.
+ *  - bfs瑜� �룎�븣�뒗 8諛⑺뼢�쑝濡� �룉�떎.
  *  
  *  logic 2
- *  - 2중 for문으로 물에 잠기게 하는 것보다
- *  - 4방 탐색을 해서 안잠기는 영역을 구하는 것이 훨씬 더 빠르다.
+ *  - 2以� for臾몄쑝濡� 臾쇱뿉 �옞湲곌쾶 �븯�뒗 寃껊낫�떎
+ *  - 4諛� �깘�깋�쓣 �빐�꽌 �븞�옞湲곕뒗 �쁺�뿭�쓣 援ы븯�뒗 寃껋씠 �썾�뵮 �뜑 鍮좊Ⅴ�떎.
  * 
  */
 
@@ -35,7 +35,7 @@ public class Main {
         min = 987654321;
         max = 0;
 
-        // 입력을 받으면서 최대값과 최솟값을 구한다.
+        // �엯�젰�쓣 諛쏆쑝硫댁꽌 理쒕�媛믨낵 理쒖넖媛믪쓣 援ы븳�떎.
         for(int y = 0; y < N; ++y){
             st = new StringTokenizer(br.readLine());
             for(int x = 0; x < N; ++x){
@@ -45,20 +45,20 @@ public class Main {
             }
         }
 
-        // 정답을 세는 변수
+        // �젙�떟�쓣 �꽭�뒗 蹂��닔
         int cnt = 0;
         int ansCnt = 0;
-        // 1 - 최솟값부터 최댓값까지만 확인을 한다.
-        // 2 - 아무지역도 안잠길수도 있으므로 min - 1 부터 확인을 한다.
+        // 1 - 理쒖넖媛믩��꽣 理쒕뙎媛믨퉴吏�留� �솗�씤�쓣 �븳�떎.
+        // 2 - �븘臾댁��뿭�룄 �븞�옞湲몄닔�룄 �엳�쑝誘�濡� min - 1 遺��꽣 �솗�씤�쓣 �븳�떎.
         for(int rain = min - 1; rain <= max; ++rain){
-            // 비의 양에 따라 새로 확인을 해야하므로
-            // 방문처리를 위한 배열을 초기화
+            // 鍮꾩쓽 �뼇�뿉 �뵲�씪 �깉濡� �솗�씤�쓣 �빐�빞�븯誘�濡�
+            // 諛⑸Ц泥섎━瑜� �쐞�븳 諛곗뿴�쓣 珥덇린�솕
             visited = new boolean[N+1][N+1];
             cnt = 0;
             for(int y = 0; y < N; ++y){
                 for(int x = 0; x < N; ++x){
-                    // 물에 안잠긴다면
-                    // 방문을 아직 안했다면
+                    // 臾쇱뿉 �븞�옞湲대떎硫�
+                    // 諛⑸Ц�쓣 �븘吏� �븞�뻽�떎硫�
                     if(rain < board[y][x] && !visited[y][x]){
                         bfs(y,x, rain);
                         cnt++;
@@ -66,14 +66,14 @@ public class Main {
                 }
             }
 
-            // 다 확인했다면 최댓값을 찾는다.
+            // �떎 �솗�씤�뻽�떎硫� 理쒕뙎媛믪쓣 李얜뒗�떎.
             if(ansCnt < cnt)
                 ansCnt = cnt;
         }
         System.out.println(ansCnt);
     }
 
-    // 4방 탐색을 위한 맵핑배열
+    // 4諛� �깘�깋�쓣 �쐞�븳 留듯븨諛곗뿴
     static int dy[] = {0,0,1,-1};
     static int dx[] = {1,-1,0,0};    
 
@@ -89,11 +89,11 @@ public class Main {
                 int ny = cur.y + dy[dir];
                 int nx = cur.x + dx[dir];
 
-                // 맵 밖으로 나가거나
+                // 留� 諛뽰쑝濡� �굹媛�嫄곕굹
                 if(ny < 0 || nx < 0 || ny >= N || nx >= N) continue;
-                // 이미 방문했다면
+                // �씠誘� 諛⑸Ц�뻽�떎硫�
                 if(visited[ny][nx]) continue;
-                // 물에 잠긴다면
+                // 臾쇱뿉 �옞湲대떎硫�
                 if(board[ny][nx] <= rain) continue;
 
                 visited[ny][nx] = true;
@@ -103,7 +103,7 @@ public class Main {
     }
 }
 
-// 좌표 처리를 위한 클래스
+// 醫뚰몴 泥섎━瑜� �쐞�븳 �겢�옒�뒪
 class Point{
     int y, x;
     Point(int y, int x){

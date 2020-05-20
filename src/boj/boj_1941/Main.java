@@ -1,4 +1,4 @@
-package boj_1941;
+package boj.boj_1941;
 
 import java.util.Scanner;
 
