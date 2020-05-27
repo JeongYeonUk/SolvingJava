@@ -40,9 +40,9 @@ public class Solution {
 		int candi = 0;
 		for(int i = 0; i < N; ++i) {
 			if((visit & (1 << i)) != 0) continue;
-			candi += solve(depth + 1, left + weight[i], right, visit |= (1 << i));
+			candi += solve(depth + 1, left + weight[i], right, visit | (1 << i));
 			if(left < right + weight[i]) continue;
-			candi += solve(depth + 1, left, right + weight[i], visit |= (1 << i));
+			candi += solve(depth + 1, left, right + weight[i], visit | (1 << i));
 		}
 		return dp[left][visit] = candi;
 	}
